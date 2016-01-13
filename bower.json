@@ -1,0 +1,10 @@
+{
+  "author": "Anchal Tyagi",
+  "name": "Mastermind",
+  "description": "Mastermind codebreaker game",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "~1.3.15"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Mastermind codebreaker game</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/game.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="mastermindApp">
+  <img class="header-img" ng-src="./images/header.png">
+    <div class="container" ng-controller="MainController as vm">      
+      <div class="row">
+        <div class="col-md-3">
+            <button type="button" ng-if="!vm.gameStarted" class="btn btn-lg btn-danger active" ng-click="vm.startGame()">Start Game</button>
+            <button type="button" ng-if="vm.gameStarted" class="btn btn-lg btn-danger active" ng-click="vm.showCode()">Show Code</button>            
+            <ul class="seceret-code">
+              <li class="{{code}}" ng-repeat="code in vm.secretCode track by $index"></li>
+            </ul>
+            
+            
+        </div>
+        <div class="col-md-6">
+          <table  class="table">
+                <tr ng-repeat="attempt in vm.maxAttempts()">
+                <td>
+                  <ul id="attempt{{attempt}}" class="selected-list">
+                    <li class="grey" fill-color-cell color="{{vm.currentPickedColor}}" index="0"></li>
+                    <li class="grey" fill-color-cell color="{{vm.currentPickedColor}}" index="1"></li>
+                    <li class="grey" fill-color-cell color="{{vm.currentPickedColor}}" index="2"></li>
+                    <li class="grey" fill-color-cell color="{{vm.currentPickedColor}}" index="3"></li>
+                  </ul>
+                </td>                
+                <td>          
+                    <hints attempt="{{attempt}}"> </hints>
+                </td>
+              </tr>
+             <tr>
+              <td>
+                  <button type="button" class="btn btn-danger" ng-click="vm.setPickedColor('red')">Red</button>
+                  <button type="button" class="btn btn-primary" ng-click="vm.setPickedColor('blue')">Blue</button>
+                  <button type="button" class="btn btn-warning" ng-click="vm.setPickedColor('yellow')">Yellow</button>
+                  <button type="button" class="btn btn-black" ng-click="vm.setPickedColor('black')">black</button>
+                  <button type="button" class="btn btn-success" ng-click="vm.setPickedColor('green')">Green</button>
+                  <button type="button" class="btn btn-default" ng-click="vm.setPickedColor('white')">white</button>
+
+              </td>
+              <td>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+      
+      <win-modal visible="vm.gameResult.isWinGame"></win-modal>
+      <loose-modal visible="vm.gameResult.isGameOver"></loose-modal>
+      
+    </div>
+      
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/lib/mastermind.js"></script>
+    <script src="app/controllers/main.controller.js"></script>
+    <script src="app/directives/fillColorCell.directive.js"></script>
+    <script src="app/directives/hints.directive.js"></script>
+    <script src="app/directives/winModal.directive.js"></script>
+    <script src="app/directives/looseModal.directive.js"></script>
+  </body>
+</html>
