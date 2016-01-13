@@ -35,4 +35,4 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['clean', 'minify-css', 'compress', 'start']);
+gulp.task('build', ['start']);
