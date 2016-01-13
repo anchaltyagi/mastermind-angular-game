@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mastermind codebreaker game",
   "scripts":{
-  "start": "gulp build"
+  "start": "bower install && gulp build"
   },
   "dependencies": {
     "gulp": "^3.5.6",
